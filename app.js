@@ -16,13 +16,18 @@ const expenseRoutes = require('./routes/expense')
 const purchaseRoutes = require('./routes/purchase')
 const premiumFeatureRoutes = require('./routes/premiumFeature')
 const forgotPasswordRoutes = require('./routes/forgotpassword');
-const { Proton } = require('aws-sdk');
+const { proton } = require('aws-sdk');
 
 const app = express();
 
 
+app.use(express.static(path.join(__dirname, "public")));
+
 // get config vars
 
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "views", "login.html"));
+});
 
 
 app.use(cors());

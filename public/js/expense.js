@@ -208,9 +208,8 @@ document.getElementById("buyPremiumBtn").addEventListener("click", async () => {
 
         };
 
-        console.log("CheckoutOptions is :", checkoutOptions)
         // Start the checkout process
-        await cashfree.checkout(checkoutOptions);
+        await cashfree. checkout(checkoutOptions);
         updateTransactionStatus(paymentSessionId, orderId);
 
     } catch (error) {

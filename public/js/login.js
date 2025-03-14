@@ -15,7 +15,7 @@ async function login(e) {
             console.log(response.data);
 
             localStorage.setItem("token", response.data.token); // Store JWT Token
-            window.location.href = "../ExpenseTracker/index.html"; // Redirect to expense page
+            window.location.href = "../views/expense.html"; // Redirect to expense page
             
             // Clear input fields after successful login
             e.target.email.value = "";
