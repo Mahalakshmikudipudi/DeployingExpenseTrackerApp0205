@@ -6,10 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker Form</title>
     <script src="https://sdk.cashfree.com/js/v3/cashfree.js"></script>
+    <link rel="stylesheet" href="/public/css/styles.css">
+
 </head>
 
 <body>
+    <header>
+        <div id="premium-section">
+            <button id="buyPremiumBtn">Buy Premium Membership</button>
+            <button onclick="download()" id="downloadexpense">Download File</button>
+        </div>
 
+       
+    
+    </header>
 
     <form onsubmit="addNewExpense(event)">
         <label for="expenseamount">Choose expense amount:</label>
@@ -27,17 +37,14 @@
         <button>Add Expense</button>
     </form>
 
-    <div id="premium-section">
-        <button id="buyPremiumBtn">Buy Premium Membership</button>
-    </div>
-
-    <button onclick="download()" id="downloadexpense">Download File</button>
-
     <div id="premiumUserUI" style="display: none;">
         <h2>🎉 You are now a Premium User! 🎉</h2>
         <button id="showLeaderboardBtn">Show Leaderboard</button>
 
-    </div>
+    </div>  
+    
+
+    
 
     <ul id="listOfExpenses"></ul>
 

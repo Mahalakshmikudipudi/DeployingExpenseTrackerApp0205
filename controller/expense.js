@@ -89,31 +89,43 @@ const getexpenses = async (req, res) => {
 
 const getExpenses = async (req, res) => {
     try {
-        const page = parseInt(req.query.page) || 1; // Get current page, default to 1
-        const limit = parseInt(req.query.limit) || 10; // Get user-selected limit, default to 10
+        const page = parseInt(req.query.page) || 1;
+        const limit = parseInt(req.query.limit) || 10;
 
-        const totalItems = await Expense.count(); // Get total expenses
+        // Debugging: Log incoming request params
+        console.log("Fetching expenses for user:", req.user.id);
+        console.log(`Page: ${page}, Limit: ${limit}`);
+
+        // Ensure userId is available
+        if (!req.user || !req.user.id) {
+            return res.status(401).json({ error: "Unauthorized access" });
+        }
+
+        const totalItems = await Expense.count({ where: { userId: req.user.id } });
 
         const expenses = await Expense.findAll({
-            offset: (page - 1) * limit, 
-            limit: limit, // Use dynamic limit
+            where: { userId: req.user.id },
+            offset: (page - 1) * limit,
+            limit: limit,
         });
 
         return res.status(200).json({
-            expenses: expenses,
+            expenses,
             currentPage: page,
             hasNextPage: limit * page < totalItems,
             nextPage: page + 1,
             hasPreviousPage: page > 1,
             previousPage: page - 1,
-            lastPage: Math.ceil(totalItems / limit), // Adjust last page based on user-selected limit
+            lastPage: Math.ceil(totalItems / limit),
         });
 
     } catch (err) {
-        console.error(err); // Fixed logging issue
-        res.status(500).json({ error: 'Something went wrong' });
+        console.error("Error fetching expenses:", err); // Log the exact error
+        res.status(500).json({ error: 'Internal Server Error', details: err.message });
     }
 };
+
+
 
 
 const deleteexpense = async (req, res) => {

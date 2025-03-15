@@ -301,15 +301,25 @@ function displayLeaderboard(users) {
         return;
     }
 
-    const list = document.createElement("ul");
+    const table = document.createElement("table");
+    table.innerHTML = `
+        <tr>
+            <th>Name</th>
+            <th>Total Expenses</th>
+        </tr>
+    `;
 
     users.forEach(user => {
-        const listItem = document.createElement("li");
-        listItem.innerHTML = `${user.name} - Total Expenses: ₹${user.totalExpenses || 0}`;
-        list.appendChild(listItem);
+        table.innerHTML += `
+            <tr>
+                <td>${user.name}</td>
+                <td>₹${user.totalExpenses || 0}</td>
+            </tr>
+        `;
     });
 
-    leaderboardContainer.appendChild(list);
+
+    leaderboardContainer.appendChild(table);
 }
 
 
