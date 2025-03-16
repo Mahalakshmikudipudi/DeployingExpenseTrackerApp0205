@@ -12,7 +12,7 @@ async function addNewExpense(e) {
 
         const token = localStorage.getItem('token');
         const response = await axios.post(
-            'http://localhost:5000/expense/addexpense',
+            'http://13.201.18.144:5000/expense/addexpense',
             expenseDetails,
             { headers: { "Authorization": `Bearer ${token}` } }
         );
@@ -38,7 +38,7 @@ window.addEventListener("DOMContentLoaded", async () => {
             throw new Error("User not authenticated. Please log in.");
         }
 
-        const response = await axios.get('http://localhost:5000/expense/getexpenses', {
+        const response = await axios.get('http://13.201.18.144:5000/expense/getexpenses', {
             headers: { "Authorization": `Bearer ${token}` }
         });
 
@@ -73,7 +73,7 @@ async function deleteExpense(e, expenseid) {
     try {
         const token = localStorage.getItem('token');
         await axios.delete(
-            `http://localhost:5000/expense/deleteexpenses/${expenseid}`,
+            `http://13.201.18.144:5000/expense/deleteexpenses/${expenseid}`,
             { headers: { "Authorization": `Bearer ${token}` } }
         );
 
@@ -93,7 +93,7 @@ async function download() {
     try {
         const token=localStorage.getItem("token");
         //console.log(token);
-        const response = await axios.get('http://localhost:5000/user/download', { 
+        const response = await axios.get('http://13.201.18.144:5000/user/download', { 
             headers: { "Authorization": `Bearer ${token}` } 
         });
 
@@ -128,7 +128,7 @@ document.getElementById("itemsPerPage").addEventListener("change", async functio
 async function fetchExpenses(page, limit) {
     try {
         const token = localStorage.getItem("token");
-        const response = await axios.get(`http://localhost:5000/expense/expenses?page=${page}&limit=${limit}`, {
+        const response = await axios.get(`http://13.201.18.144:5000/expense/expenses?page=${page}&limit=${limit}`, {
             headers: { "Authorization": `Bearer ${token}` }
         });
 
@@ -207,7 +207,7 @@ document.getElementById("buyPremiumBtn").addEventListener("click", async () => {
         //console.log("Token is:", token);
 
         // Fetch payment session ID from backend
-        const response = await fetch("http://localhost:5000/purchase/purchasepremium", {
+        const response = await fetch("http://13.201.18.144:5000/purchase/purchasepremium", {
             method: "POST",
             headers: { "Authorization": `Bearer ${token}` },
         });
@@ -239,7 +239,7 @@ async function updateTransactionStatus(paymentSessionId, orderId) {
     const token = localStorage.getItem("token"); // Retrieve token from local storage
 
     try {
-        const response = await fetch("http://localhost:5000/purchase/update-transaction", {
+        const response = await fetch("http://13.201.18.144:5000/purchase/update-transaction", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -271,7 +271,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         }
 
         // ✅ Check if user is premium
-        const premiumResponse = await axios.get("http://localhost:5000/user/checkPremiumStatus", {
+        const premiumResponse = await axios.get("http://13.201.18.144:5000/user/checkPremiumStatus", {
             headers: { "Authorization": `Bearer ${token}` }
         });
 
@@ -294,7 +294,7 @@ async function fetchLeaderboard() {
     const token = localStorage.getItem("token");
 
     try {
-        const response = await axios.get("http://localhost:5000/premium/showleaderboard", {
+        const response = await axios.get("http://13.201.18.144:5000/premium/showleaderboard", {
             headers: { "Authorization": `Bearer ${token}` }
         });
 

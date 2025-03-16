@@ -8,7 +8,7 @@ async function login(e) {
         };
         console.log("Logging in with:", loginDetails);
 
-        const response = await axios.post("http://localhost:5000/user/login", loginDetails);
+        const response = await axios.post("http://13.201.18.144:5000/user/login", loginDetails);
 
         if (response.status === 200) {
             alert(response.data.message);

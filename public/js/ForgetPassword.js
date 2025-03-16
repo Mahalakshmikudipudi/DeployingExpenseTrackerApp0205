@@ -9,7 +9,7 @@ async function passwordreset(e) {
 
         
 
-        const response = await axios.post("http://localhost:5000/password/forgotpassword", passwordResetDetails);
+        const response = await axios.post("http://13.201.18.144:5000/password/forgotpassword", passwordResetDetails);
         if(response.status === 202){
             document.body.innerHTML += '<div style="color:green;">Mail Successfuly sent <div>'
         } else {

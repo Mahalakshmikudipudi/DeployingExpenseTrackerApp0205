@@ -9,7 +9,7 @@ async function signup(e) {
             password: e.target.password.value
         }
         console.log(signupDetails);
-        const response = await axios.post("http://localhost:5000/user/signup", signupDetails)
+        const response = await axios.post("http://13.201.18.144:5000/user/signup", signupDetails)
         if (response.status === 201) {
             window.location.href = "../html/login.html" //change the page on successful login
         } else {
