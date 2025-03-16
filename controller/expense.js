@@ -39,7 +39,7 @@ const addexpense = async (req, res) => {
 
         const user = await User.findOne({ where: { id: req.user.id }, transaction }); //transaction is used for tracking the status
 
-        console.log("UserDetails:", user);
+        //console.log("UserDetails:", user);
 
         if (!user) throw new Error("User not found");
 
@@ -60,7 +60,7 @@ const addexpense = async (req, res) => {
             { where: { id: req.user.id }, transaction }
         );
 
-        console.log("UpdatedRows:", updatedRows);
+        //console.log("UpdatedRows:", updatedRows);
 
         if (updatedRows === 0) throw new Error("Failed to update total expenses");
 
@@ -93,8 +93,8 @@ const getExpenses = async (req, res) => {
         const limit = parseInt(req.query.limit) || 10;
 
         // Debugging: Log incoming request params
-        console.log("Fetching expenses for user:", req.user.id);
-        console.log(`Page: ${page}, Limit: ${limit}`);
+        //console.log("Fetching expenses for user:", req.user.id);
+        //console.log(`Page: ${page}, Limit: ${limit}`);
 
         // Ensure userId is available
         if (!req.user || !req.user.id) {
@@ -150,8 +150,8 @@ const deleteexpense = async (req, res) => {
 
         if (totalExpense < 0) totalExpense = 0; // Prevent negative values
 
-        console.log(`Before Delete: Total Expenses = ${user.totalExpenses}, Expense Amount = ${expense.expenseamount}`);
-        console.log(`After Delete: New Total Expenses = ${totalExpense}`);
+        //console.log(`Before Delete: Total Expenses = ${user.totalExpenses}, Expense Amount = ${expense.expenseamount}`);
+        //console.log(`After Delete: New Total Expenses = ${totalExpense}`);
 
         // Step 2: Delete the expense
         const noOfRows = await Expense.destroy({ where: { id: expenseid, userId: req.user.id }, transaction });

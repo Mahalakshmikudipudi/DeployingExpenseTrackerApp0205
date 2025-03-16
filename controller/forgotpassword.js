@@ -68,8 +68,8 @@ const updatePassword = async (req, res) => {
         const { newpassword } = req.query;
         const { resetpasswordid } = req.params;
 
-        console.log("NewPassword:", newpassword);
-        console.log("ResertPasswordId:", resetpasswordid);
+        //console.log("NewPassword:", newpassword);
+        //console.log("ResertPasswordId:", resetpasswordid);
         
         const resetpasswordrequest = await ForgotPasswordRequests.findOne({ where: { id: resetpasswordid } });
         if (!resetpasswordrequest) {
