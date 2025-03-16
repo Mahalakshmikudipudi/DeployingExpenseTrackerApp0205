@@ -18,6 +18,13 @@ async function addNewExpense(e) {
         );
 
         addNewExpensetoUI(response.data.expense);
+        e.target.expenseamount.value = '';
+        e.target.description.value = '';
+        e.target.category.value = '';
+
+        // ✅ Re-fetch updated expenses list (optional but recommended)
+        const expensesPerPage = localStorage.getItem("expensesPerPage") || 5;
+        await fetchExpenses(1, expensesPerPage);
     } catch (err) {
         console.error("Error:", err.response ? err.response.data.message : err.message);
         document.body.innerHTML += `<div style="color:red;">${err.response ? err.response.data.message : err.message}</div>`;
@@ -45,23 +52,20 @@ window.addEventListener("DOMContentLoaded", async () => {
 });
 
 function addNewExpensetoUI(expense) {
-    const parentElement = document.getElementById('listOfExpenses');
-    // Check if the heading already exists, if not, add it
-    if (!document.getElementById("expenseHeading")) {
-        const heading = document.createElement("h2");
-        heading.id = "expenseHeading";
-        heading.textContent = "Expenses";
-        parentElement.before(heading); // Insert heading before the list
-    }
-    const expenseEle = document.createElement('li');
-    expenseEle.id = `expense-${expense.id}`;
-    expenseEle.innerHTML = `
-        ${expense.expenseamount} - ${expense.category} - ${expense.description}
-        <button onclick='deleteExpense(event, ${expense.id})'>
-            Delete Expense
-        </button>
+    const listOfExpenses = document.getElementById('listOfExpenses');
+
+    const row = document.createElement('tr');
+    row.id = `expense-${expense.id}`;
+    row.innerHTML = `
+        <td>₹${expense.expenseamount}</td>
+        <td>${expense.category}</td>
+        <td>${expense.description}</td>
+        <td>
+            <button onclick='deleteExpense(event, ${expense.id})' style="background-color: red;">Delete</button>
+        </td>
     `;
-    parentElement.appendChild(expenseEle);
+
+    listOfExpenses.appendChild(row);
 }
 
 
@@ -108,7 +112,7 @@ async function download() {
 };
 
 window.addEventListener("DOMContentLoaded", async () => {
-    const expensesPerPage = localStorage.getItem("expensesPerPage") || 5; // Default to 10
+    const expensesPerPage = localStorage.getItem("expensesPerPage") || 5; // Default to 5
     document.getElementById("itemsPerPage").value = expensesPerPage; // Set dropdown value
     await fetchExpenses(1, expensesPerPage);
 });
@@ -135,15 +139,28 @@ async function fetchExpenses(page, limit) {
     }
 }
 
-// Display expenses on the screen
+// Display expenses in a table
 async function listExpenses(expenses) {
     const expenseList = document.getElementById('expenseList');
     expenseList.innerHTML = '';
 
     expenses.forEach(expense => {
-        const listItem = document.createElement('li');
-        listItem.textContent = `${expense.category} - ${expense.description} - ₹${expense.expenseamount}`;
-        expenseList.appendChild(listItem);
+        const row = document.createElement('tr');
+
+        const categoryCell = document.createElement('td');
+        categoryCell.textContent = expense.category;
+        
+        const descriptionCell = document.createElement('td');
+        descriptionCell.textContent = expense.description;
+
+        const amountCell = document.createElement('td');
+        amountCell.textContent = `₹${expense.expenseamount}`;
+
+        row.appendChild(categoryCell);
+        row.appendChild(descriptionCell);
+        row.appendChild(amountCell);
+
+        expenseList.appendChild(row);
     });
 }
 

@@ -17,8 +17,8 @@
             <button onclick="download()" id="downloadexpense">Download File</button>
         </div>
 
-       
-    
+
+
     </header>
 
     <form onsubmit="addNewExpense(event)">
@@ -41,12 +41,23 @@
         <h2>🎉 You are now a Premium User! 🎉</h2>
         <button id="showLeaderboardBtn">Show Leaderboard</button>
 
-    </div>  
-    
+    </div>
 
-    
 
-    <ul id="listOfExpenses"></ul>
+
+
+    <h2>Expense List</h2>
+    <table id="expenseTable">
+        <thead>
+            <tr>
+                <th>Amount</th>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody id="listOfExpenses"></tbody>
+    </table>
 
     <label for="itemsPerPage">Expenses per page:</label>
     <select id="itemsPerPage">
@@ -56,7 +67,18 @@
         <option value="30">30</option>
         <option value="40">40</option>
     </select>
-    <ul id="expenseList"></ul>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Description</th>
+                <th>Amount (₹)</th>
+            </tr>
+        </thead>
+        <tbody id="expenseList"></tbody>
+    </table>
+
     <div id="pagination"></div>
     <ul id="leaderboard"></ul>
 

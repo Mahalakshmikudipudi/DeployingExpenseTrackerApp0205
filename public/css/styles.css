@@ -188,6 +188,34 @@ button:hover {
     font-weight: bold;
 }
 
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background: #007bff;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+#pagination {
+    margin-top: 15px;
+}
+
+#leaderboard {
+    margin-top: 20px;
+}
 /* Footer */
 footer {
 
