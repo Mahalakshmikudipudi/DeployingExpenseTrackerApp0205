@@ -16,7 +16,7 @@ const purchasepremium = async (req, res) => {
         const customerPhone = "9999999999";
         const paymentSessionId = await createOrder(orderId, orderAmount, orderCurrency, customerID, customerPhone);
         await Order.create({ userId, orderAmount, orderCurrency, orderId, paymentSessionId, paymentStatus: "PENDING" });
-        console.log("PaymentId:", paymentSessionId);
+        //console.log("PaymentId:", paymentSessionId);
         return res.status(201).json({ success: true, paymentSessionId, orderId }); // Return order_id
     } catch (err) {
         console.error("Error creating order:", err);
@@ -27,7 +27,7 @@ const purchasepremium = async (req, res) => {
 const checkPaymentStatus = async (req, res) => {
   try {
       const userId = req.user.id;  // Extract user ID from authenticated request
-      console.log("UserId is:", userId);
+      //console.log("UserId is:", userId);
       const orderId = req.body.orderId;
 
       if (!orderId) {

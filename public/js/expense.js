@@ -8,7 +8,7 @@ async function addNewExpense(e) {
             category: e.target.category.value
         };
 
-        console.log("Adding Expense:", expenseDetails);
+        //console.log("Adding Expense:", expenseDetails);
 
         const token = localStorage.getItem('token');
         const response = await axios.post(
@@ -92,7 +92,7 @@ function removeExpensefromUI(expenseid) {
 async function download() {
     try {
         const token=localStorage.getItem("token");
-        console.log(token);
+        //console.log(token);
         const response = await axios.get('http://localhost:5000/user/download', { 
             headers: { "Authorization": `Bearer ${token}` } 
         });
@@ -216,7 +216,7 @@ document.getElementById("buyPremiumBtn").addEventListener("click", async () => {
         const paymentSessionId = data.paymentSessionId;
         const orderId = data.orderId; // Ensure backend sends orderId
 
-        console.log("paymentId:", orderId);
+        //console.log("paymentId:", orderId);
 
         let checkoutOptions = {
             paymentSessionId: paymentSessionId,
@@ -300,7 +300,7 @@ async function fetchLeaderboard() {
 
         const leaderboardData = response.data;
 
-        console.log("LeaderboardData:", leaderboardData);
+        //console.log("LeaderboardData:", leaderboardData);
 
         displayLeaderboard(leaderboardData);
     } catch (error) {
