@@ -16,7 +16,7 @@ const expenseRoutes = require('./routes/expense')
 const purchaseRoutes = require('./routes/purchase')
 const premiumFeatureRoutes = require('./routes/premiumFeature')
 const forgotPasswordRoutes = require('./routes/forgotpassword');
-const { proton } = require('aws-sdk');
+const { AWS } = require('aws-sdk');
 
 const app = express();
 
