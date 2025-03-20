@@ -11,14 +11,15 @@ const sender = {
     email: 'mahalakshmiguthula125@gmail.com',
 };
 
-const receivers = [
-    {
-        email: 'mahag1420@gmail.com',
-    },
-];
+
 
 const sendEmail = async (email, id) => {
     try {
+        const receivers = [
+            {
+                email: email,
+            },
+        ];
         const response = await tranEmailApi.sendTransacEmail({
             sender,
             to: receivers,
