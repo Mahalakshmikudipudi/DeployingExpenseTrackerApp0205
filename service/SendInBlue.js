@@ -15,11 +15,7 @@ const sender = {
 
 const sendEmail = async (email, id) => {
     try {
-        const receivers = [
-            {
-                email: email,
-            },
-        ];
+        const receivers = [{ email }];
         const response = await tranEmailApi.sendTransacEmail({
             sender,
             to: receivers,
