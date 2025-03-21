@@ -339,6 +339,25 @@ function displayLeaderboard(users) {
     leaderboardContainer.appendChild(table);
 }
 
+async function logout() {
+    try {
+        const token = localStorage.getItem('token'); // Retrieve token from local storage
+        const response = await axios.post(
+            'http://13.201.18.144:5000/user/logout',
+            {},
+            { headers: { "Authorization": `Bearer ${token}` } }
+        );
+
+        alert(response.data.message || 'Logged out successfully!');
+        localStorage.removeItem('token'); // Clear the token from storage
+        window.location.href = "../html/login.html"; // Redirect to login page
+    } catch (error) {
+        console.error("Logout failed:", error.response ? error.response.data.message : error.message);
+        document.body.innerHTML += `<div style="color:red;">${error.response ? error.response.data.message : error.message}</div>`;
+    }
+}
+
+
 
 
 

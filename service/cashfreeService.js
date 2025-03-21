@@ -1,4 +1,4 @@
-  const { Cashfree } = require("cashfree-pg");
+ const { Cashfree } = require("cashfree-pg");
 
   Cashfree.XClientId = process.env.CASHFREE_APP_ID;
   Cashfree.XClientSecret = process.env.CASHFREE_SECRET_KEY;
@@ -7,7 +7,7 @@
   //console.log("App ID:", process.env.CASHFREE_APP_ID);
   //console.log("Secret Key", process.env.CASHFREE_SECRET_KEY);
 
-  exports.createOrder = async (orderId, orderAmount, orderCurrency = "IND", customerID, customerPhone, token) =>
+  exports.createOrder = async (orderId, orderAmount, orderCurrency = "IND", customerID, customerPhone) =>
   {
       try {
           const expiryDate = new Date(Date.now() + 60 * 60 * 1000);

@@ -12,7 +12,7 @@ async function login(e) {
 
         if (response.status === 200) {
             alert(response.data.message);
-            console.log(response.data);
+            //console.log(response.data);
 
             localStorage.setItem("token", response.data.token); // Store JWT Token
             window.location.href = "../html/expense.html"; // Redirect to expense page
