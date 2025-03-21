@@ -14,7 +14,7 @@ router.post('/login', userController.login)
 
 router.get('/download', authenticatemiddleware.authenticate, expenseController.downloadexpense);
 
-router.post('/logout', authenticatemiddleware.authenticate, expenseController.logoutUser);
+router.post('/logout', authenticatemiddleware.authenticate, userController.logoutUser);
 
 router.get("/checkPremiumStatus", authenticatemiddleware.authenticate, userController.checkPremiumStatus);
 
